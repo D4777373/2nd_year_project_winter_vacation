@@ -1,1 +1,2 @@
-# This repository contains all the projects and skills I have developed and learned by the end of the 2nd Year, 1st Semester. The projects date back to 1st December 2024 and showcase my progress in various technical domains. These projects reflect my understanding and practical application of the skills I have acquired so far in my studies.
+#This repository showcases the projects and skills I developed by the end of my 2nd year, 1st semester. Dating back to December 1, 2024, these projects highlight my progress across various technical areas and demonstrate my practical application of the knowledge I’ve gained so far.
+
