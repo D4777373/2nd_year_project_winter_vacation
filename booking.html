@@ -1,0 +1,86 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Welcome to Our Hotel</title>
+  <link rel="stylesheet" href="booking_css.css" />
+</head>
+<body>
+  <form class="booking-form">
+    <h2>Book Your Stay</h2>
+
+    <div class="form-row">
+      <!-- Left column -->
+      <div class="form-column">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="checkin">Check-in Date</label>
+        <input type="date" id="checkin" name="checkin" required />
+
+        <label for="checkout">Check-out Date</label>
+        <input type="date" id="checkout" name="checkout" required />
+
+        <label for="room-type">Room Type</label>
+        <select id="room-type" name="room-type" required>
+          <option value="">Select</option>
+          <option value="single">Single Room</option>
+          <option value="double">Double Room</option>
+          <option value="suite">Suite</option>
+        </select>
+
+        <label>
+          <input type="checkbox" id="is_verified" name="is_verified" value="1" />
+          Verified Booking
+        </label>
+      </div>
+
+      <!-- Right column -->
+      <div class="form-column">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="checkin_time">Check-in Time</label>
+        <input type="time" id="checkin_time" name="checkin_time" required />
+
+        <label for="checkout_time">Check-out Time</label>
+        <input type="time" id="checkout_time" name="checkout_time" required />
+
+        <label for="guests">Number of Guests</label>
+        <select id="guests" name="guests" required>
+          <option value="">Select</option>
+          <option value="1">1 Guest</option>
+          <option value="2">2 Guests</option>
+          <option value="3">3 Guests</option>
+          <option value="4">4 Guests</option>
+          <option value="5">5+ Guests</option>
+        </select>
+
+        <label for="signature">Signature Code</label>
+        <input type="text" id="signature" name="signature" readonly placeholder="Auto-generated code"/>
+      </div>
+    </div>
+
+    <div class="form-footer">
+      <button type="submit">Book Now</button>
+    </div>
+  </form>
+
+   <script>
+  document.getElementById('name').addEventListener('input', function() {
+    const name = this.value.trim();
+    if (name.length > 0) {
+      // Example: simple hash-like code from name
+      const code = btoa(name).substr(0, 8).toUpperCase();
+      document.getElementById('signature').value = code;
+    } else {
+      document.getElementById('signature').value = '';
+    }
+  });
+</script>
+
+
+</body>
+</html>
+

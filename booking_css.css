@@ -1,0 +1,112 @@
+ /* General body and background setup */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  background: #f0f0f0;
+  position: relative;
+  overflow: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: url("img_source/4k hotel wallpaper.jpg") center center/cover no-repeat;
+  filter: blur(8px) brightness(0.7);
+  z-index: -1;
+}
+
+/* Booking form container */
+.booking-form {
+  background: rgba(255,255,255,0.95);
+  border-radius: 10px;
+  padding: 30px;
+  margin: 50px 20px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+  max-width: 850px;
+  width: 90%;
+}
+
+.booking-form h2 {
+  text-align: center;
+  color: #2a5298;
+  margin-bottom: 30px;
+}
+
+/* Layout for two columns */
+.form-row {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.form-column {
+  flex: 1;
+  min-width: 280px;
+}
+
+/* Label and input elements */
+.booking-form label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+.booking-form input,
+.booking-form select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border: 1px solid #bbb;
+  border-radius: 5px;
+  font-size: 1em;
+  background: #f7faff;
+}
+
+.booking-form input[type="checkbox"] {
+  width: auto;
+  margin-right: 8px;
+  vertical-align: middle;
+  accent-color: #2a5298;
+}
+
+/* Read-only signature styling */
+.booking-form input#signature {
+  background: #eaeaea;
+  font-family: monospace;
+  color: #555;
+  cursor: not-allowed;
+  margin-top: 10px;
+}
+
+/* Submit button center alignment */
+.submit-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+.booking-form button {
+  padding: 12px 30px;
+  background-color: #2a5298;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.1s ease;
+}
+
+.booking-form button:hover {
+  background-color: #021b49;
+  transform: scale(1.05);
+}
+
