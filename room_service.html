@@ -1,0 +1,82 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Service - Paradise Hotel</title>
+    <link rel="stylesheet" href="room_service.css">
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="container">
+        <!-- Login Box -->
+        <div class="login-box" id="loginBox">
+            <h2>Room Service Login</h2>
+            <div id="errorMsg" class="error"></div>
+            <form id="loginForm" autocomplete="off">
+                <label for="signature">Enter Your Signature Code</label>
+                <input type="text" id="signature" name="signature" required placeholder="Signature code from booking">
+                <button type="submit">Log In</button>
+            </form>
+        </div>
+
+        <!-- Room Service Form -->
+        <div class="service-box" id="serviceBox">
+            <h2>Order Room Services</h2>
+            <form id="serviceForm">
+                <div class="guest-info">
+                    <label for="guestSignature">Signature Code</label>
+                    <input type="text" id="guestSignature" name="guestSignature" readonly>
+                </div>
+                <div class="services-list">
+                    <label><input type="checkbox" name="services" value="Room Cleaning"> Room Cleaning (₹200)</label>
+                    <label><input type="checkbox" name="services" value="Laundry"> Laundry (₹50/item)</label>
+                    <label><input type="checkbox" name="services" value="In-room Dining"> In-room Dining (as per menu)</label>
+                    <label><input type="checkbox" name="services" value="Extra Bed"> Extra Bed (₹500/night)</label>
+                    <label><input type="checkbox" name="services" value="Wake-up Call"> Wake-up Call (Free)</label>
+                    <label><input type="checkbox" name="services" value="Airport Pickup"> Airport Pickup (₹1200)</label>
+                    <label><input type="checkbox" name="services" value="Spa Appointment"> Spa Appointment (₹2000/session)</label>
+                    <label><input type="checkbox" name="services" value="Gym Access"> Gym Access (Free)</label>
+                    <label><input type="checkbox" name="services" value="Swimming Pool"> Swimming Pool Access (Free)</label>
+                    <label><input type="checkbox" name="services" value="Conference Room"> Conference Room Booking (₹3000/hour)</label>
+                    <label><input type="checkbox" name="services" value="Valet Parking"> Valet Parking (₹100)</label>
+                    <label><input type="checkbox" name="services" value="Butler Service"> Butler Service (₹1500/day)</label>
+                    <label><input type="checkbox" name="services" value="Mini Bar Restock"> Mini Bar Restock (as per consumption)</label>
+                    <label><input type="checkbox" name="services" value="Medical Assistance"> Medical Assistance (On Request)</label>
+                    <label><input type="checkbox" name="services" value="Pet Care"> Pet Care (₹800/day)</label>
+                </div>
+                <button type="submit">Order Selected Services</button>
+            </form>
+            <div id="orderMsg" class="order-msg"></div>
+        </div>
+    </div>
+    <script>
+        // Login logic
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const userCode = document.getElementById('signature').value.trim();
+            if(userCode.length >= 8) {
+                document.getElementById('loginBox').style.display = 'none';
+                document.getElementById('serviceBox').style.display = 'block';
+                document.getElementById('guestSignature').value = userCode;
+            } else {
+                document.getElementById('errorMsg').textContent = "Invalid or missing signature code.";
+            }
+        });
+
+        // Order logic
+        document.getElementById('serviceForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const checked = Array.from(document.querySelectorAll('input[name="services"]:checked')).map(cb => cb.value);
+            if(checked.length === 0) {
+                document.getElementById('orderMsg').textContent = "Please select at least one service to order.";
+                document.getElementById('orderMsg').style.color = "#c00";
+            } else {
+                document.getElementById('orderMsg').textContent = "Thank you! Your order for: " + checked.join(", ") + " has been placed.";
+                document.getElementById('orderMsg').style.color = "#2a5298";
+                document.getElementById('serviceForm').reset();
+            }
+        });
+    </script>
+</body>
+</html>

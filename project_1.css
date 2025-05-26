@@ -36,40 +36,13 @@ h1{
     margin: 20px auto;
     transition: background 0.2s, color 0.2s;
 }
-
- 
-
- .info-layout {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    width: 100%;
-    position: absolute;
-    left: 0;
-    bottom: -280px;
-    padding: 40px 5vw;
-    box-sizing: border-box;
-    pointer-events: none; /* So it doesn't block other content */
-    z-index: 10;
+.a1:hover {
+    background-color: #0a7bbd;
+    color: #fff;
 }
-
-.about_explanation {
-    background: rgba(240, 173, 173, 0.95);
-    border-radius: 12px;
-    box-shadow: 0 4px 24px rgba(246, 246, 246, 0.133);
-    padding: 16px 18px;
-    max-width: 220px;
-    margin-right: 16px;
-    pointer-events: auto;
-}
-
- 
-
- /* ...existing code... */
-
 .room_images {
     text-align: center;
-    height: 100vh;
+    height: 150vh;
     margin: 40px 0;
      display: flex;
     flex-direction: row;
@@ -116,22 +89,89 @@ h1{
     box-shadow: 0 8px 24px #0005;
     border-color: #2a5298;
 }
- 
- .Service-section {
-    position: absolute;
-    background: rgba(105, 103, 215, 0.9);
-    padding: 40px 20px;
-    bottom: 120px;
-    right: 50px;
-    border-radius: 12px;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
-    margin: 20px auto;
-    max-width: 1200px;}
 
-    .Usefull_Link {
-    position: absolute;
-    background: rgba(90, 42, 42, 0.9);
-    padding: 20px 20px;
-    bottom: -140px;
-    left: 490px;
-    }
+/* Floating button to open the info box */
+.info-fab {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #2a5298 60%, #cab851 100%);
+    color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 4px 24px #0005;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2em;
+    cursor: pointer;
+    z-index: 100;
+    transition: background 0.2s, transform 0.2s;
+}
+.info-fab:hover {
+    background: linear-gradient(135deg, #cab851 60%, #2a5298 100%);
+    transform: scale(1.08);
+}
+
+/* The popup info box */
+.info-popup {
+    position: fixed;
+    bottom: 110px;
+    right: 40px;
+    width: 420px;
+    max-width: 95vw;
+    background: rgba(255,255,255,0.98);
+    border-radius: 18px;
+    box-shadow: 0 8px 40px #0005;
+    padding: 28px 24px 24px 24px;
+    z-index: 101;
+    display: none;
+    flex-direction: column;
+    gap: 24px;
+    animation: popupIn 0.3s;
+}
+@keyframes popupIn {
+    from { transform: translateY(40px) scale(0.95); opacity: 0; }
+    to   { transform: translateY(0) scale(1); opacity: 1; }
+}
+.info-popup.active {
+    display: flex;
+}
+
+/* Section styles inside the popup */
+.info-popup .about_explanation,
+.info-popup .Service-section,
+.info-popup .Usefull_Link {
+    background: none;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+    margin: 0 0 18px 0;
+}
+
+.info-popup .about_explanation h2,
+.info-popup .Service-section h3,
+.info-popup .Usefull_Link h3 {
+    margin-top: 0;
+    margin-bottom: 8px;
+    color: #2a5298;
+    font-size: 1.2em;
+    letter-spacing: 1px;
+}
+
+.info-popup ul, .info-popup ol {
+    margin: 0 0 0 18px;
+    padding: 0;
+}
+
+.info-popup li {
+    margin-bottom: 6px;
+    font-size: 1em;
+}
+
+.info-popup a {
+    color: #2a5298;
+    text-decoration: underline;
+}
+ 

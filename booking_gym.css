@@ -1,0 +1,103 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    min-height: 100vh;
+    position: relative;
+}
+
+.overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: url('img_source/gym_bg.jpg') center center/cover no-repeat;
+    filter: blur(6px) brightness(0.7);
+    z-index: 0;
+}
+/* Put your gym background image in img_source/gym_bg.jpg */
+
+.container {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-box, .gym-box {
+    background: rgba(255,255,255,0.97);
+    border-radius: 14px;
+    box-shadow: 0 8px 40px #0004;
+    padding: 36px 32px 32px 32px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    margin: 30px;
+}
+
+.gym-box {
+    display: none;
+    max-width: 400px;
+}
+
+h2 {
+    color: #2a5298;
+    margin-bottom: 24px;
+    letter-spacing: 1px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    color: #222;
+    font-weight: bold;
+    text-align: left;
+}
+
+input[type="text"], input[type="time"] {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 18px;
+    border: 1.5px solid #bbb;
+    border-radius: 6px;
+    font-size: 1em;
+    background: #f7faff;
+    transition: border 0.2s;
+}
+
+input[type="text"]:focus, input[type="time"]:focus {
+    border: 1.5px solid #2a5298;
+    outline: none;
+    background: #eef6ff;
+}
+
+button {
+    padding: 12px 32px;
+    background: #2a5298;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    margin-top: 10px;
+    letter-spacing: 1px;
+}
+
+button:hover {
+    background: #021b49;
+    transform: scale(1.03);
+}
+
+.error {
+    color: #c00;
+    margin-bottom: 10px;
+}
+
+.slot-msg {
+    margin-top: 18px;
+    font-size: 1.1em;
+    font-weight: bold;
+}

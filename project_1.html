@@ -19,9 +19,13 @@
     <img src="\project_prac_1/img_source/PREMIUM_ROOM.cms" alt="room image 3"width="200" height="150">
 </div>
  
-<div class="info-layout">
+ <!-- Floating button -->
+<div class="info-fab" id="infoFab" title="Show Info">?</div>
+
+<!-- Popup info box -->
+<div class="info-popup" id="infoPopup">
   <div class="about_explanation">
-    <h2>about Us</h2>
+    <h2>About Us</h2>
     <p>
       Welcome to StayEase, your trusted partner in finding the perfect stay.
       Whether you're planning a relaxing vacation, a business trip, or a last-minute getaway,
@@ -42,17 +46,28 @@
     </ul>
   </div>
   <div class="Usefull_Link">
-    <h3>Usefull Link</h3>
+    <h3>Useful Links</h3>
     <ol>
-        <li>For Wi-fi password : click <a href="check_wifi_password.html"> here </a></li>
-        <li>For any room Service: click <a href="">here</a></li>
-        <li>Book your time for GYM : click <a href="">here</a> </li>
-        <li>Order your FOOD:click <a href="">here</a></li>
-        <li>To get the map of the hotel:click <a href="">here</a> </li>
-        <li><a href ="">cab Service</a></li>
+        <li>For Wi-fi password : click <a href="check_wifi_password.html">here</a></li>
+        <li>For any room Service: click <a href="room_service.html">here</a></li>
+        <li>Book your time for GYM : click <a href="booking_gym.html">here</a></li>
+        <li>Order your FOOD: click <a href="#">here</a></li>
+        <li>To get the map of the hotel: click <a href="#">here</a></li>
+        <li><a href="#">Cab Service</a></li>
     </ol>
   </div>
-
-
+</div>
+<script>
+const fab = document.getElementById('infoFab');
+const popup = document.getElementById('infoPopup');
+fab.addEventListener('click', () => {
+    popup.classList.toggle('active');
+});
+window.addEventListener('click', (e) => {
+    if (!popup.contains(e.target) && e.target !== fab) {
+        popup.classList.remove('active');
+    }
+});
+</script>
 </body>
 </html> 

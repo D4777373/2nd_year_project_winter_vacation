@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym Booking - Paradise Hotel</title>
+    <link rel="stylesheet" href=" booking_gym.css">
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="container">
+        <!-- Login Box -->
+        <div class="login-box" id="loginBox">
+            <h2>Gym Booking Login</h2>
+            <div id="errorMsg" class="error"></div>
+            <form id="loginForm" autocomplete="off">
+                <label for="signature">Enter Your Signature Code</label>
+                <input type="text" id="signature" name="signature" required placeholder="Signature code from booking">
+                <button type="submit">Log In</button>
+            </form>
+        </div>
+
+        <!-- Gym Booking Form -->
+        <div class="gym-box" id="gymBox">
+            <h2>Book Your Gym Slot</h2>
+            <form id="gymForm">
+                <div class="guest-info">
+                    <label for="guestSignature">Signature Code</label>
+                    <input type="text" id="guestSignature" name="guestSignature" readonly>
+                </div>
+                <label for="preferredTime">Preferred Time</label>
+                <input type="time" id="preferredTime" name="preferredTime" required>
+                <button type="submit">Book Slot</button>
+            </form>
+            <div id="slotMsg" class="slot-msg"></div>
+        </div>
+    </div>
+    <script>
+        // Example of already booked slots (in 24h format, you can fetch from backend)
+        const bookedSlots = ["07:00", "08:00", "09:00", "18:00", "19:00"];
+        const allSlots = [
+            "06:00", "07:00", "08:00", "09:00", "10:00",
+            "11:00", "12:00", "13:00", "14:00", "15:00",
+            "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"
+        ];
+
+        // Login logic
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const userCode = document.getElementById('signature').value.trim();
+            if(userCode.length >= 8) {
+                document.getElementById('loginBox').style.display = 'none';
+                document.getElementById('gymBox').style.display = 'block';
+                document.getElementById('guestSignature').value = userCode;
+            } else {
+                document.getElementById('errorMsg').textContent = "Invalid or missing signature code.";
+            }
+        });
+
+        // Greedy slot assignment
+        document.getElementById('gymForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const preferred = document.getElementById('preferredTime').value;
+            if (!preferred) return;
+
+            // Find the nearest available slot
+            let minDiff = Infinity;
+            let nearestSlot = null;
+            const preferredMinutes = toMinutes(preferred);
+
+            allSlots.forEach(slot => {
+                if (!bookedSlots.includes(slot)) {
+                    const diff = Math.abs(toMinutes(slot) - preferredMinutes);
+                    if (diff < minDiff) {
+                        minDiff = diff;
+                        nearestSlot = slot;
+                    }
+                }
+            });
+
+            if (nearestSlot) {
+                bookedSlots.push(nearestSlot); // Mark as booked (for demo)
+                document.getElementById('slotMsg').textContent =
+                    `Your gym slot is booked at ${nearestSlot}. Enjoy your workout!`;
+                document.getElementById('slotMsg').style.color = "#2a5298";
+                document.getElementById('gymForm').reset();
+            } else {
+                document.getElementById('slotMsg').textContent =
+                    "Sorry, no slots available today. Please try another day.";
+                document.getElementById('slotMsg').style.color = "#c00";
+            }
+        });
+
+        function toMinutes(timeStr) {
+            const [h, m] = timeStr.split(":").map(Number);
+            return h * 60 + m;
+        }
+    </script>
+</body>
+</html>
